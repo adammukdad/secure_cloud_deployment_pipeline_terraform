@@ -1,0 +1,41 @@
+name: Secure Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform-security:
+    name: Terraform Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./aws
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./aws
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: ./aws
+
+      - name: Checkov Scan
+        run: checkov -d ./aws --quiet --soft-fail false
