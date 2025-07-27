@@ -1,32 +1,84 @@
-provider "aws" {
-  region = "us-east-1"
+resource "random_id" "bucket_id" {
+  byte_length = 4
 }
 
-# S3 Bucket (secure by default)
 resource "aws_s3_bucket" "secure_bucket" {
-  bucket = "adam-secure-bucket-${random_id.bucket_id.hex}"
+  bucket        = "adam-secure-bucket-${random_id.bucket_id.hex}"
   force_destroy = true
-}
 
-resource "aws_s3_bucket_public_access_block" "block_public" {
-  bucket = aws_s3_bucket.secure_bucket.id
+  versioning {
+    enabled = true
+  }
 
-  block_public_acls   = true
-  block_public_policy = true
-  ignore_public_acls  = true
-  restrict_public_buckets = true
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
-  bucket = aws_s3_bucket.secure_bucket.id
-
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
     }
+  }
+
+  logging {
+    target_bucket = "adam-secure-logs-bucket"
+    target_prefix = "log/"
+  }
+
+  lifecycle_rule {
+    id      = "log"
+    enabled = true
+
+    expiration {
+      days = 90
+    }
+
+    noncurrent_version_expiration {
+      days = 30
+    }
+  }
+
+  replication_configuration {
+    role = aws_iam_role.replication_role.arn
+
+    rules {
+      id     = "replication"
+      status = "Enabled"
+
+      destination {
+        bucket        = "arn:aws:s3:::replica-bucket"
+        storage_class = "STANDARD"
+      }
+
+      filter {}
+    }
+  }
+
+  tags = {
+    Owner       = "adam"
+    Environment = "dev"
   }
 }
 
-resource "random_id" "bucket_id" {
-  byte_length = 4
+resource "aws_s3_bucket" "secure_logs_bucket" {
+  bucket        = "adam-secure-logs-bucket"
+  force_destroy = true
+}
+
+resource "aws_s3_bucket" "replica_bucket" {
+  bucket        = "replica-bucket"
+  force_destroy = true
+}
+
+resource "aws_iam_role" "replication_role" {
+  name = "replication-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Action    = "sts:AssumeRole",
+      Effect    = "Allow",
+      Principal = {
+        Service = "s3.amazonaws.com"
+      }
+    }]
+  })
 }
