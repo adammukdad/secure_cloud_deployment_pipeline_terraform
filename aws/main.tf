@@ -58,27 +58,28 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
     expiration {
       days = 365
     }
+
+    filter {
+      prefix = ""
+    }
   }
 }
 
-# Replication configuration (requires IAM role and destination bucket)
+# Replication configuration (corrected rule block and prefix)
 resource "aws_s3_bucket_replication_configuration" "replication" {
   depends_on = [aws_s3_bucket_versioning.versioning]
 
   bucket = aws_s3_bucket.secure_bucket.id
   role   = aws_iam_role.replication_role.arn
 
-  rules {
+  rule {
     id     = "replicate-all"
     status = "Enabled"
+    prefix = ""
 
     destination {
       bucket        = "arn:aws:s3:::adam-replica-bucket-ohio"
       storage_class = "STANDARD"
-    }
-
-    filter {
-      prefix = ""
     }
 
     delete_marker_replication {
