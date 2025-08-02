@@ -47,7 +47,7 @@ resource "aws_s3_bucket_logging" "logging" {
   target_prefix = "log/"
 }
 
-# Lifecycle configuration
+# Lifecycle configuration with expiration and multipart abort policy
 resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
   bucket = aws_s3_bucket.secure_bucket.id
 
@@ -57,6 +57,10 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
 
     expiration {
       days = 365
+    }
+
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
     }
 
     filter {
