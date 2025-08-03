@@ -143,6 +143,5 @@ secure_cloud_deployment_pipeline_terraform/
 **Adam Mukdad**  
 📧 [adammukdad97@gmail.com](mailto:adammukdad97@gmail.com)  
 🔗 [GitHub Portfolio](https://github.com/adammukdad)  
-🔗 [LinkedIn](https://www.linkedin.com/in/adammukdad/)
-
-🕒 Drafted on August 03, 2025
+🔗 [LinkedIn](https://www.linkedin.com/in/adammukdad/)  
+🕒 Drafted on August 03, 2025  
