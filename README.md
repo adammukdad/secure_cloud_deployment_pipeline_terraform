@@ -2,7 +2,7 @@
 
 [![Terraform](https://img.shields.io/badge/Terraform-v1.8+-623CE4?logo=terraform)](https://www.terraform.io/)
 [![Checkov](https://img.shields.io/badge/Checkov-3.2.457-blueviolet?logo=bridgecrew)](https://www.checkov.io/)
-[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/adammukdad/secure_cloud_deployment_pipeline_terraform/terraform.yml?label=GitHub%20Actions&logo=github)](https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform/actions)
+![GitHub Actions](https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform/actions/workflows/deploy.yml/badge.svg?branch=main)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ---
