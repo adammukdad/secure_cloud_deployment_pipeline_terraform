@@ -3,7 +3,11 @@
 [![Terraform](https://img.shields.io/badge/Terraform-v1.8+-623CE4?logo=terraform)](https://www.terraform.io/)
 [![Checkov](https://img.shields.io/badge/Checkov-3.2.457-blueviolet?logo=bridgecrew)](https://www.checkov.io/)
 ![GitHub Actions](https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform/actions/workflows/deploy.yml/badge.svg?branch=main)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+![Platforms](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
+![GitHub stars](https://img.shields.io/github/stars/adammukdad/aws-s3-auditor?style=social)
+![GitHub forks](https://img.shields.io/github/forks/adammukdad/aws-s3-auditor?style=social)
+![GitHub issues](https://img.shields.io/github/issues/adammukdad/aws-s3-auditor)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
