@@ -205,4 +205,5 @@ secure_cloud_deployment_pipeline_terraform/
 📧 [adammukdad97@gmail.com](mailto:adammukdad97@gmail.com)  
 🔗 [GitHub Portfolio](https://github.com/adammukdad)  
 🌐 [LinkedIn](https://www.linkedin.com/in/adammukdad/)  
-📍 Chicago, IL  
+📍 Chicago, IL
+[📚 Back to Table of Contents](#-table-of-contents)
