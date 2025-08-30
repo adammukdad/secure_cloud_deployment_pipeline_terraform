@@ -32,11 +32,17 @@
 
 ---
 ## 📄 Overview
+
+[⬆️ Back to top](#-table-of-contents)
+
 This project demonstrates a hardened, scan-gated CI/CD pipeline that securely deploys multi-cloud infrastructure using **Terraform**. It leverages **GitHub Actions** for automation and **Checkov** to enforce security controls pre-deployment, blocking insecure infrastructure-as-code (IaC) before it reaches production.
 
 ---
 
 ## ✨ Key Features
+
+[⬆️ Back to top](#-table-of-contents)
+
 - Secure AWS S3 bucket provisioning with Terraform
 - CI/CD enforcement with GitHub Actions
 - Policy-as-code enforcement with Checkov
@@ -47,6 +53,9 @@ This project demonstrates a hardened, scan-gated CI/CD pipeline that securely de
 ---
 
 ## 📈 Qualified & Quantified Impact
+
+[⬆️ Back to top](#-table-of-contents)
+
 - ✅ **21 Checkov policies passed**
 - ❌ **0 failed security checks**
 - ⛔️ Insecure deployments blocked via automated pipeline
@@ -56,6 +65,9 @@ This project demonstrates a hardened, scan-gated CI/CD pipeline that securely de
 ---
 
 ## 🎯 Objectives Met
+
+[⬆️ Back to top](#-table-of-contents)
+
 - Harden S3 bucket using Terraform and enforce versioning, encryption, and access logs
 - Block insecure IaC via CI/CD gates with Checkov
 - Implement cross-region encrypted replication
@@ -64,6 +76,9 @@ This project demonstrates a hardened, scan-gated CI/CD pipeline that securely de
 ---
 
 ## 🧾 Sample Log Output
+
+[⬆️ Back to top](#-table-of-contents)
+
 
 ```bash
 Passed checks: 21, Failed checks: 0, Skipped checks: 0
@@ -78,6 +93,9 @@ PASSED for resource: aws_s3_bucket_lifecycle_configuration.lifecycle
 ---
 
 ## 🧱 Project Structure
+
+[⬆️ Back to top](#-table-of-contents)
+
 ```
 secure_cloud_deployment_pipeline_terraform/
 ├── .github/workflows/
@@ -95,6 +113,9 @@ secure_cloud_deployment_pipeline_terraform/
 ---
 
 ## 🛠️ Tech Stack
+
+[⬆️ Back to top](#-table-of-contents)
+
 - **Terraform** v1.8+
 - **GitHub Actions** for CI/CD
 - **Checkov** v3.2.457 by Bridgecrew
@@ -105,6 +126,9 @@ secure_cloud_deployment_pipeline_terraform/
 ---
 
 ## 🧪 How to Run
+
+[⬆️ Back to top](#-table-of-contents)
+
 
 1. Clone the repo:
    ```bash
@@ -128,6 +152,9 @@ secure_cloud_deployment_pipeline_terraform/
 
 ## 🖼️ Screenshots
 
+[⬆️ Back to top](#-table-of-contents)
+
+
 ✅ **Passing Scan Output**
 ![Checkov Pass](./screenshots/checkov_scan_passed.png)
 
@@ -140,6 +167,9 @@ secure_cloud_deployment_pipeline_terraform/
 ---
 
 ## 🔭 Future Enhancements
+
+[⬆️ Back to top](#-table-of-contents)
+
 - Add OPA Gatekeeper for deeper policy-as-code enforcement
 - Expand to Azure and GCP bucket equivalents
 - Introduce drift detection with `terraform plan -detailed-exitcode`
@@ -148,6 +178,9 @@ secure_cloud_deployment_pipeline_terraform/
 ---
 
 ## 🧠 Challenges & Lessons Learned
+
+[⬆️ Back to top](#-table-of-contents)
+
 - Terraform's block syntax for S3 replication is strict and sensitive
 - Checkov requires precise lifecycle and encryption configuration
 - CI/CD pipeline debugging requires iterative commits
@@ -156,6 +189,9 @@ secure_cloud_deployment_pipeline_terraform/
 ---
 
 ## 🎯 Key Takeaways for Hiring Managers
+
+[⬆️ Back to top](#-table-of-contents)
+
 - This project enforces **fail-fast DevSecOps** best practices
 - Highlights strong **IaC security** and **pipeline automation** skills
 - Demonstrates ability to secure multi-cloud deployments
