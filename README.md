@@ -1,247 +1,165 @@
-# ☁️ Multi-Cloud Threat Intelligence Dashboard
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![Streamlit](https://img.shields.io/badge/Streamlit-Enabled-red?logo=streamlit)
-![Azure](https://img.shields.io/badge/Azure-Integrated-blue?logo=microsoftazure)
-![AWS](https://img.shields.io/badge/AWS-Supported-orange?logo=amazonaws)
-![Security](https://img.shields.io/badge/Category-Security%20Tool-red)
-![Platforms](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
-[![GitHub stars](https://img.shields.io/github/stars/adammukdad/log-scanner-python?style=social)](https://github.com/adammukdad/log-scanner-python/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/adammukdad/log-scanner-python?style=social)](https://github.com/adammukdad/log-scanner-python/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/adammukdad/log-scanner-python)](https://github.com/adammukdad/log-scanner-python/issues)
-[![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/adammukdad/log-scanner-python/blob/main/LICENSE)
+# 🚀 Secure Cloud Deployment Pipeline with Terraform
 
-
-Correlate and visualize AWS + Azure security events with a cross-cloud security monitoring dashboard built using Python and Streamlit.
+<!-- Badges -->
+[![CI Status](https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform/actions/workflows/deploy.yml)
+![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-blue)
+![Terraform](https://img.shields.io/badge/terraform-1.8%2B-623CE4?logo=terraform)
+![Checkov](https://img.shields.io/badge/checkov-enabled-0A0?logo=checkov)
+![AWS](https://img.shields.io/badge/AWS-S3-orange?logo=amazon-aws)
+![GitHub Stars](https://img.shields.io/github/stars/adammukdad/secure_cloud_deployment_pipeline_terraform)
+![GitHub Forks](https://img.shields.io/github/forks/adammukdad/secure_cloud_deployment_pipeline_terraform)
+![GitHub Issues](https://img.shields.io/github/issues/adammukdad/secure_cloud_deployment_pipeline_terraform)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 ---
 
+
+
 ## 📚 Table of Contents
 - [Overview](#-overview)
-- [Key Features](#️-key-features)
-- [Qualified & Quantified Impact](#-qualified-and-quantified-impact)
+- [Key Features](#-key-features)
+- [Qualified & Quantified Impact](#-qualified--quantified-impact)
 - [Objectives Met](#-objectives-met)
 - [Sample Log Output](#-sample-log-output)
 - [Project Structure](#-project-structure)
-- [Tech Stack](#-tech-stack)
+- [Tech Stack](#️-tech-stack)
 - [How to Run](#-how-to-run)
-- [Screenshot](#-screenshot)
+- [Screenshots](#️-screenshots)
 - [Future Enhancements](#-future-enhancements)
-- [Challenges & Lessons Learned](#-challenges-and-lessons-learned)
+- [Challenges & Lessons Learned](#-challenges--lessons-learned)
 - [Key Takeaways for Hiring Managers](#-key-takeaways-for-hiring-managers)
 - [Author](#-author)
 
 ---
-
-
-## 🔍 Overview
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-This dashboard aggregates and correlates security alerts from AWS CloudTrail and Azure Sign-In logs. It normalizes the data, identifies cross-cloud threats (e.g., shared malicious IPs), and presents them in an interactive Streamlit interface.
+## 📄 Overview
+This project demonstrates a hardened, scan-gated CI/CD pipeline that securely deploys multi-cloud infrastructure using **Terraform**. It leverages **GitHub Actions** for automation and **Checkov** to enforce security controls pre-deployment, blocking insecure infrastructure-as-code (IaC) before it reaches production.
 
 ---
 
-## 🛠️ Key Features
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-- ✅ Parses and normalizes AWS + Azure security events  
-- ✅ Correlates alerts by source IP for unified threat intelligence  
-- ✅ Interactive dashboard with severity and cloud-provider filters  
-- ✅ Built with Python, Streamlit, and modular JSON data pipelines  
+## ✨ Key Features
+- Secure AWS S3 bucket provisioning with Terraform
+- CI/CD enforcement with GitHub Actions
+- Policy-as-code enforcement with Checkov
+- Cross-region S3 replication using KMS encryption
+- Lifecycle rules and access policies embedded in IaC
+- Full security validation before apply stage
 
 ---
 
-## 📊 Qualified and Quantified Impact
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-- Correlated **50+ AWS** and **Azure alerts** using custom Python logic, reducing analysis time from minutes to seconds  
-- Normalized **three distinct JSON log formats** across two cloud providers into a consistent schema  
-- Achieved **100% automation** from raw log ingestion to visualization — no manual intervention required  
-- Built a modular pipeline that can be extended to other providers (e.g., GCP) with minimal code duplication
+## 📈 Qualified & Quantified Impact
+- ✅ **21 Checkov policies passed**
+- ❌ **0 failed security checks**
+- ⛔️ Insecure deployments blocked via automated pipeline
+- 🔐 KMS-enabled encrypted storage and IAM-restricted access
+- 🧪 Validated against CIS and AWS best practices
 
 ---
 
 ## 🎯 Objectives Met
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-- Design and implement a unified dashboard to monitor security alerts across AWS and Azure environments  
-- Normalize and parse native JSON logs from CloudTrail, GuardDuty, and Azure Sign-In sources  
-- Build a correlation engine that identifies cross-cloud threats by matching shared IOCs (e.g., malicious IPs)  
-- Visualize correlated events in a clean, filterable, and interactive Streamlit dashboard
+- Harden S3 bucket using Terraform and enforce versioning, encryption, and access logs
+- Block insecure IaC via CI/CD gates with Checkov
+- Implement cross-region encrypted replication
+- Automatically expire incomplete multipart uploads after 365 days
 
 ---
 
-## 📁 Sample Log Output
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-### ✅ Parsed AWS Alert (Privilege Escalation)
-```json
-{
-  "cloud": "AWS",
-  "eventType": "PrivilegeEscalation",
-  "user": "iam-user-02",
-  "assumedRole": "arn:aws:iam::123456789012:role/AdminRole",
-  "action": "AttachRolePolicy",
-  "targetRole": "AdminRole",
-  "policyAttached": "arn:aws:iam::aws:policy/AdministratorAccess",
-  "sourceIP": "203.0.113.15",
-  "timestamps": [
-    "2025-07-13T14:02:00Z",
-    "2025-07-13T14:03:00Z"
-  ],
-  "severity": "High",
-  "geo": "Unknown"
-}
-```
-
-### ✅ Parsed Azure Alert (Anomalous Login)
-```json
-{
-  "cloud": "Azure",
-  "eventType": "AnomalousLogin",
-  "sourceIP": "203.0.113.15",
-  "userTargeted": "john.doe@contoso.com",
-  "failedAttempts": 3,
-  "riskLevels": [
-    "medium",
-    "high",
-    "high"
-  ],
-  "riskState": "confirmedCompromised",
-  "geo": "User did not pass the MFA challenge. | Moscow, RU",
-  "timestamps": [
-    "2025-07-13T14:10:00Z",
-    "2025-07-13T14:11:00Z",
-    "2025-07-13T14:12:00Z"
-  ],
-  "severity": "High"
-}
-```
-
-### ✅ Correlated Cross-Cloud Alert
-```json
-{
-  "sourceIP": "203.0.113.15",
-  "cloudsInvolved": ["AWS", "Azure"],
-  "eventTypes": ["PrivilegeEscalation", "AnomalousLogin"],
-  "users": ["john.doe@contoso.com", "iam-user-02"],
-  "severity": "Critical"
-}
-```
-
-## 📁 Project Structure
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-```
-multi_cloud_threat_intelligence_dashboard/
-│
-├── aws/
-│   ├── cloudtrail_bruteforce.json
-│   ├── cloudtrail_escalation.json
-│   ├── guardduty_s3_public.json
-│   ├── lambda_parser.py
-│   └── aws_alerts_parsed.json
-│
-├── azure/
-│   ├── aad_signin_logs.json
-│   ├── function_parser.py
-│   └── azure_alerts_parsed.json
-│
-├── correlation_engine/
-│   ├── correlate_alerts.py
-│   └── correlated_alerts.json
-│
-├── app.py
-└── README.md
-```
-
-## 🧰 Tech Stack
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-- **Languages**: Python  
-- **Cloud Providers**: AWS, Azure  
-- **Framework**: Streamlit  
-- **Data Format**: JSON  
-
----
-
-## 🚀 How to Run
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-> Make sure Streamlit is installed. If not, run:
+## 🧾 Sample Log Output
 
 ```bash
-pip install streamlit
+Passed checks: 21, Failed checks: 0, Skipped checks: 0
+
+Check: CKV_AWS_93: "Ensure S3 bucket policy does not lock out all but root user"
+PASSED for resource: aws_s3_bucket.secure_bucket
+...
+Check: CKV_AWS_300: "Ensure S3 lifecycle configuration sets period for aborting failed uploads"
+PASSED for resource: aws_s3_bucket_lifecycle_configuration.lifecycle
 ```
 
-Then start the dashboard:
+---
 
-```bash
-streamlit run app.py
+## 🧱 Project Structure
+```
+secure_cloud_deployment_pipeline_terraform/
+├── .github/workflows/
+│   └── terraform.yml                # CI/CD workflow definition
+├── main.tf                          # Terraform configuration
+├── variables.tf                     # Input variable declarations
+├── outputs.tf                       # Terraform output definitions
+├── screenshots/
+│   ├── github_actions_workflow_success_checkov_scan_passed.png
+│   ├── checkov_scan_passed.png
+│   └── checkov_scan_failure_demo.png
+└── README.md                        # Project documentation
 ```
 
 ---
 
-## 📸 Screenshot
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-![Dashboard Preview](dashboard_screenshot.png)
-
----
-
-## 🧠 Future Enhancements
-
-[⬆️ Back to top](#-table-of-contents)
-
-
-- Integrate real-time log ingestion (e.g., from S3 buckets or Azure blob storage)  
-- Add alert severity scoring  
-- Build alert timelines and maps  
+## 🛠️ Tech Stack
+- **Terraform** v1.8+
+- **GitHub Actions** for CI/CD
+- **Checkov** v3.2.457 by Bridgecrew
+- **AWS S3** for cloud storage and replication
+- **IAM** roles and policies for secure access
+- **KMS** for encrypted replication
 
 ---
 
-## 🧠 Challenges and Lessons Learned
+## 🧪 How to Run
 
-[⬆️ Back to top](#-table-of-contents)
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform.git
+   cd secure_cloud_deployment_pipeline_terraform
+   ```
 
+2. Validate and scan locally (optional):
+   ```bash
+   terraform init
+   terraform validate
+   checkov -d .
+   ```
 
-- **Challenge:** Normalizing log formats across clouds — AWS and Azure log schemas differ significantly  
-  **Solution:** Designed a lightweight schema to unify alert types, source IPs, and timestamps  
-
-- **Challenge:** Detecting meaningful cross-cloud correlations without real-time SIEM tools  
-  **Solution:** Built a correlation engine that matched alerts by source IP and grouped results chronologically  
-
-- **Lesson:** Cross-cloud threat visibility requires careful abstraction of cloud-native data  
-  **Outcome:** Reinforced the value of simplicity, schema design, and modular Python pipelines
+3. Push to GitHub — Actions will:
+   - Validate Terraform code
+   - Conditionally run `terraform plan` if AWS creds exist
+   - Perform Checkov scan and block if insecure
 
 ---
 
-## 📌 Key Takeaways for Hiring Managers
+## 🖼️ Screenshots
 
-[⬆️ Back to top](#-table-of-contents)
+✅ **Passing Scan Output**
+![Checkov Pass](./screenshots/checkov_scan_passed.png)
 
+🟩 **GitHub Actions Success**
+![GitHub Workflow](./screenshots/github_actions_workflow_success_checkov_scan_passed.png)
 
-- This project demonstrates **hands-on experience in multi-cloud security operations** — not just theory  
-- I built a functioning system that performs **log parsing, alert normalization, IOC correlation, and visualization**  
-- I’ve used **Python to replicate key features of commercial SIEMs and XDRs**, tailored for AWS and Azure  
-- This dashboard is extensible, fast, and designed with real-world triage and detection workflows in mind
+❌ **Failure Demo**
+![Checkov Failure](./screenshots/checkov_scan_failure_demo.png)
+
+---
+
+## 🔭 Future Enhancements
+- Add OPA Gatekeeper for deeper policy-as-code enforcement
+- Expand to Azure and GCP bucket equivalents
+- Introduce drift detection with `terraform plan -detailed-exitcode`
+- Auto-approve pull requests that pass security gates
+
+---
+
+## 🧠 Challenges & Lessons Learned
+- Terraform's block syntax for S3 replication is strict and sensitive
+- Checkov requires precise lifecycle and encryption configuration
+- CI/CD pipeline debugging requires iterative commits
+- Hardening isn't just functional — it must be policy-compliant too
+
+---
+
+## 🎯 Key Takeaways for Hiring Managers
+- This project enforces **fail-fast DevSecOps** best practices
+- Highlights strong **IaC security** and **pipeline automation** skills
+- Demonstrates ability to secure multi-cloud deployments
+- Shows real-world security tooling integration into developer workflows
 
 ---
 
@@ -251,6 +169,4 @@ streamlit run app.py
 📧 [adammukdad97@gmail.com](mailto:adammukdad97@gmail.com)  
 🔗 [GitHub Portfolio](https://github.com/adammukdad)  
 🌐 [LinkedIn](https://www.linkedin.com/in/adammukdad/)  
-📍 Chicago, IL
-
-[📚 Back to Table of Contents](#-table-of-contents)
+📍 Chicago, IL  
