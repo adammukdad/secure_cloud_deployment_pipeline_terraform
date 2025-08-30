@@ -24,7 +24,7 @@
 - [Project Structure](#-project-structure)
 - [Tech Stack](#-tech-stack)
 - [How to Run](#-how-to-run)
-- [Screenshot](#-screenshot)
+- [Screenshots](#-screenshots)
 - [Future Enhancements](#-future-enhancements)
 - [Challenges & Lessons Learned](#-challenges--lessons-learned)
 - [Key Takeaways for Hiring Managers](#-key-takeaways-for-hiring-managers)
@@ -126,7 +126,7 @@ secure_cloud_deployment_pipeline_terraform/
 
 ---
 
-## 🖼️ Screenshot
+## 🖼️ Screenshots
 
 ✅ **Passing Scan Output**
 ![Checkov Pass](./screenshots/checkov_scan_passed.png)
