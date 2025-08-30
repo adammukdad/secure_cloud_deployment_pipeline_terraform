@@ -1,40 +1,63 @@
-name: Secure Terraform CI/CD
+name: Secure Terraform CI/CD / Terraform Security Scan
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 jobs:
-  terraform-security-scan:
-    name: Terraform Security Scan
+  security-ci:
     runs-on: ubuntu-latest
 
+    # Map secrets (may be empty) to env so we can conditionally run Plan
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION || 'us-east-1' }}
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Terraform
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.7.5
 
-      - name: Terraform Init
-        run: terraform init
+      # Keep everything inside the 'aws' folder of this repo
+      - name: Terraform Init (no backend)
+        run: terraform init -backend=false
+        working-directory: aws
+
+      - name: Terraform Format Check
+        run: terraform fmt -check
         working-directory: aws
 
       - name: Terraform Validate
         run: terraform validate
         working-directory: aws
 
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: aws
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
       - name: Checkov Scan
-        uses: bridgecrewio/checkov-action@master
+        uses: bridgecrewio/checkov-action@v12
         with:
           directory: aws
+          soft_fail: false # fail on findings (set true if you want non-blocking)
+
+      # Only run plan if BOTH AWS creds are present
+      - name: Terraform Plan
+        if: ${{ env.AWS_ACCESS_KEY_ID != '' && env.AWS_SECRET_ACCESS_KEY != '' }}
+        run: terraform plan -input=false -lock=false
+        working-directory: aws
+        env:
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
+
+      # Friendly message so the job still shows green without creds
+      - name: Skip Plan (no AWS creds)
+        if: ${{ env.AWS_ACCESS_KEY_ID == '' || env.AWS_SECRET_ACCESS_KEY == '' }}
+        run: |
+          echo "No AWS credentials detected. Skipping 'terraform plan'."
+          echo "Add repo secrets AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY to enable planning."
