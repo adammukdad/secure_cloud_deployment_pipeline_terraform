@@ -9,7 +9,7 @@
 ![GitHub Stars](https://img.shields.io/github/stars/adammukdad/secure_cloud_deployment_pipeline_terraform)
 ![GitHub Forks](https://img.shields.io/github/forks/adammukdad/secure_cloud_deployment_pipeline_terraform)
 ![GitHub Issues](https://img.shields.io/github/issues/adammukdad/secure_cloud_deployment_pipeline_terraform)
-![License](https://img.shields.io/github/license/adammukdad/secure_cloud_deployment_pipeline_terraform)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 ---
 
