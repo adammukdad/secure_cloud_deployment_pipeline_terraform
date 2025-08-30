@@ -1,5 +1,16 @@
 # 🚀 Secure Cloud Deployment Pipeline with Terraform
 
+<!-- Badges -->
+[![CI Status](https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/adammukdad/secure_cloud_deployment_pipeline_terraform/actions/workflows/deploy.yml)
+![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-blue)
+![Terraform](https://img.shields.io/badge/terraform-1.8%2B-623CE4?logo=terraform)
+![Checkov](https://img.shields.io/badge/checkov-enabled-0A0?logo=checkov)
+![AWS](https://img.shields.io/badge/AWS-S3-orange?logo=amazon-aws)
+![GitHub Stars](https://img.shields.io/github/stars/adammukdad/secure_cloud_deployment_pipeline_terraform)
+![GitHub Forks](https://img.shields.io/github/forks/adammukdad/secure_cloud_deployment_pipeline_terraform)
+![GitHub Issues](https://img.shields.io/github/issues/adammukdad/secure_cloud_deployment_pipeline_terraform)
+![License](https://img.shields.io/github/license/adammukdad/secure_cloud_deployment_pipeline_terraform)
+
 ---
 
 ## 📄 Overview
@@ -92,7 +103,7 @@ secure_cloud_deployment_pipeline_terraform/
 
 3. Push to GitHub — Actions will:
    - Validate Terraform code
-   - Run `terraform plan`
+   - Conditionally run `terraform plan` if AWS creds exist
    - Perform Checkov scan and block if insecure
 
 ---
