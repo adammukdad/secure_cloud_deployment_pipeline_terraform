@@ -13,6 +13,24 @@
 
 ---
 
+
+
+## 📚 Table of Contents
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Qualified & Quantified Impact](#-qualified--quantified-impact)
+- [Objectives Met](#-objectives-met)
+- [Sample Log Output](#-sample-log-output)
+- [Project Structure](#-project-structure)
+- [Tech Stack](#-tech-stack)
+- [How to Run](#-how-to-run)
+- [Screenshot](#-screenshot)
+- [Future Enhancements](#-future-enhancements)
+- [Challenges & Lessons Learned](#-challenges--lessons-learned)
+- [Key Takeaways for Hiring Managers](#-key-takeaways-for-hiring-managers)
+- [Author](#-author)
+
+---
 ## 📄 Overview
 This project demonstrates a hardened, scan-gated CI/CD pipeline that securely deploys multi-cloud infrastructure using **Terraform**. It leverages **GitHub Actions** for automation and **Checkov** to enforce security controls pre-deployment, blocking insecure infrastructure-as-code (IaC) before it reaches production.
 
